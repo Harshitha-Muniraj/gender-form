@@ -1,24 +1,16 @@
-import React,{useEffect, useState} from 'react';
-import Markdown from 'react-markdown';
-import './App.css'
+import react from 'react';
+import MyTodos from './components/MyTodos';
 
-const App = () => {
-    const [inputText,setInputText]=useState("# Hello world !");
-    const [mark,setMark]=useState("# Hello world !");
 
-    useEffect(()=>{
-         setMark(inputText)
-    },[inputText])
+function App(){
 
-  return (
-    <div className='container'>
-        <div className='left flex'>
-            <textarea type="text"  value={inputText} onChange={(e)=>setInputText(e.target.value)} />
-        </div>
-        <div className='right flex'>
-            <Markdown>{mark}</Markdown>
-        </div>
-    </div>
+
+  return(
+   
+    <MyTodos/>
+   
+
+
   )
 }
 
