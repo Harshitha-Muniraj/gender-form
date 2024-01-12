@@ -1,43 +1,34 @@
 
 import { useState } from 'react';
 import './App.css'
+import { useSelector,useDispatch } from 'react-redux';
+import { updateEmail, updateName } from './redux/actions/InputAction';
 
 function App() {
-  const [outfit,setOutfit]=useState("Shirt");
-  const [selectedOption,setSelectedOption]=useState(true)
+
+  const storeName=useSelector((state)=>state.name);
+  const storeEmail=useSelector((state)=>state.email);
+
+  const dispatch=useDispatch();
+
   return (
+    <main>
     <form>
+      <h1>User Information</h1>
       <div>
-        <h3>Select Your Gender :</h3>
-        
-        <input type='radio' name='gender' value='Shirt' id='men' checked={selectedOption==true}  onChange={(e)=>{setOutfit(e.target.value);setSelectedOption(true)}}/>
-        <label htmlFor='men'>Men</label>
-       
-        <input type='radio' name='gender' id='women' value='Dress' onChange={(e)=>{setOutfit(e.target.value);setSelectedOption(false)}} />
-        <label htmlFor='women'>women</label>
+        <label htmlFor='name'>User Name :</label>
+        <input onChange={(e)=>dispatch(updateName(e.target.value))} value={storeName} id='name'/>
       </div>
+      <br/>
       <div>
-        <h3>Select Your {outfit} size</h3>
-        
-          {
-            selectedOption ? 
-            <select name='shirt' id='men'>
-            <option >Select size</option>
-            <option value='small'>Small</option>
-            <option value='medium'>Medium</option>
-            <option value='large'>Large</option>
-            </select>
-            :
-            <select name='dress' id='women'>
-            <option >Select size</option>
-            <option value='2'>2</option>
-            <option value='4'>4</option>
-            <option value='6'>6</option>
-            </select>
-          }
-        
+        <label htmlFor='email'>User Email :</label>
+        <input onChange={(e)=>dispatch(updateEmail(e.target.value))} id='email' value={storeEmail}/>
       </div>
-    </form>
+    </form>  
+    <h2>current values in store</h2>
+    <div>username : {storeName}</div>
+    <div>useremail : {storeEmail}</div>
+    </main>
   );
 }
 
