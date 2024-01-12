@@ -1,35 +1,25 @@
-
-import { useState } from 'react';
+import React,{useEffect, useState} from 'react';
+import Markdown from 'react-markdown';
 import './App.css'
-import { useSelector,useDispatch } from 'react-redux';
-import { updateEmail, updateName } from './redux/actions/InputAction';
 
-function App() {
+const App = () => {
+    const [inputText,setInputText]=useState("# Hello world !");
+    const [mark,setMark]=useState("# Hello world !");
 
-  const storeName=useSelector((state)=>state.name);
-  const storeEmail=useSelector((state)=>state.email);
-
-  const dispatch=useDispatch();
+    useEffect(()=>{
+         setMark(inputText)
+    },[inputText])
 
   return (
-    <main>
-    <form>
-      <h1>User Information</h1>
-      <div>
-        <label htmlFor='name'>User Name :</label>
-        <input onChange={(e)=>dispatch(updateName(e.target.value))} value={storeName} id='name'/>
-      </div>
-      <br/>
-      <div>
-        <label htmlFor='email'>User Email :</label>
-        <input onChange={(e)=>dispatch(updateEmail(e.target.value))} id='email' value={storeEmail}/>
-      </div>
-    </form>  
-    <h2>current values in store</h2>
-    <div>username : {storeName}</div>
-    <div>useremail : {storeEmail}</div>
-    </main>
-  );
+    <div className='container'>
+        <div className='left flex'>
+            <textarea type="text"  value={inputText} onChange={(e)=>setInputText(e.target.value)} />
+        </div>
+        <div className='right flex'>
+            <Markdown>{mark}</Markdown>
+        </div>
+    </div>
+  )
 }
 
 export default App;
