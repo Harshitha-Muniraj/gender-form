@@ -1,5 +1,6 @@
 import react from 'react';
-import MyTodos from './components/MyTodos';
+
+import Reviews from './ReviewComponent/Reviews';
 
 
 function App(){
@@ -7,7 +8,7 @@ function App(){
 
   return(
    
-    <MyTodos/>
+    <Reviews/>
    
 
 
