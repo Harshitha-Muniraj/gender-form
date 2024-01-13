@@ -1,0 +1,12 @@
+form{
+    height: 90vh;
+      width: 30%;
+      margin: 7% auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+  }
+  
+  h3{
+    font-size: 1.5rem;}
